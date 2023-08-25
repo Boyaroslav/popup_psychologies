@@ -43,13 +43,16 @@ $(document).ready(function() {
 	});
     $('#submit').click(function(){
         var d = document.getElementById('input_email').value;
+        var err = NaN;
 
         $.post("https://psytsm.ru/save_email/", {email : d })
         .done(function(data){
             $("#err").empty().append(data.error);
+            if (data.error){
+            err = data.error;}
         });
 
-
+        if (!(err)){
         $('#popUp')
 			.animate({opacity: 0, top: '35%'}, 490, 
 				function(){ 
@@ -62,6 +65,47 @@ $(document).ready(function() {
                     .css('display', 'block') 
 					.animate({opacity: 1, top: '55%'}, 490); 
         });
+       
+            $('#popUp')
+			.animate({opacity: 0, top: '35%'}, 490, 
+				function(){ 
+					$(this).css('display', 'none'); 
+					$('#overlay').fadeOut(220); 
+				}
+			);
+        $('#overlay').fadeIn(250, function(){
+            $('#popUp')
+                    .css('display', 'block') 
+					.animate({opacity: 1, top: '55%'}, 490); 
+        });
+        }
+        else{
+            $('#popUp')
+			.animate({opacity: 0, top: '35%'}, 490, 
+				function(){ 
+					$(this).css('display', 'none'); 
+					$('#overlay').fadeOut(220); 
+				}
+			);
+        $('#overlay').fadeIn(250, function(){
+            $('#popUp')
+                    .css('display', 'block') 
+					.animate({opacity: 1, top: '55%'}, 490); 
+        });
+       
+            $('#popUp')
+			.animate({opacity: 0, top: '35%'}, 490, 
+				function(){ 
+					$(this).css('display', 'none'); 
+					$('#overlay').fadeOut(220); 
+				}
+			);
+        $('#overlay').fadeIn(250, function(){
+            $('#popUp')
+                    .css('display', 'block') 
+					.animate({opacity: 1, top: '55%'}, 490); 
+        });
+        }
     });
 });
 </script>
